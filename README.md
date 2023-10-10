@@ -18,7 +18,7 @@ classDiagram
         - articleContent
     }
     
-    Category "1" -- "*" Article : contains
+    Category "1" -- "N" Article : contains
 ```
 
 # Recursos
