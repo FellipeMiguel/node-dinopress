@@ -3,6 +3,24 @@
 ## Descrição 
 O Dino's Press é uma aplicação de blog simples, desenvolvida utilizando Node.js como backend, MySQL como banco de dados, EJS como engine de visualização, e Bootstrap para estilização. Este projeto permite aos usuários criar, ler, atualizar e excluir postagens de blog, demonstrando a integração de tecnologias populares para o desenvolvimento web.
 
+# Diagrama de Classe
+
+```mermaid
+classDiagram
+    class Category {
+        - categoryId
+        - categoryName
+    }
+    
+    class Article {
+        - articleId
+        - articleTitle
+        - articleContent
+    }
+    
+    Category "1" -- "*" Article : contains
+```
+
 # Recursos
 - Interface amigável para blog
 - Operações CRUD (Criar, Ler, Atualizar, Excluir) para postagens de blog
