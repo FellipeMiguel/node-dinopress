@@ -11,7 +11,7 @@
             <form action="" method="POST">
                 <input class="form-control" type="text" name="title" placeholder="Defina o título do artigo" />
                 <br />
-                <textarea name="body" class="form-control" placeholder="Escreva o seu artigo aqui"></textarea>
+                <textarea name="body" class="form-control" placeholder="Escreva o seu artigo aqui" id="article"></textarea>
                 <br />
                 <button class="btn btn-success">Cadastrar</button>
             </form>
@@ -20,3 +20,16 @@
 </div>
 
 <%- include('../../partials/footer') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+
+    tinymce.init({
+        language: 'pt_BR',
+        selector: "#article",
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscrean insertdatetime media save table paste emoticons'
+        ]
+    });
+
+</script>
