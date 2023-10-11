@@ -3,9 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 
-// Rotas
+// Controllers
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
+
+// Models
+const Category = require('./categories/Category');
+const Article = require('./articles/Article');
 
 // View engine
 app.set('view engine', 'ejs');
