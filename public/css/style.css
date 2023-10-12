@@ -1,7 +1,8 @@
-body {
-    background-color: #eceff1;
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
-#form-ask {
-    margin-top: 5vh;
+.container__body {
+    min-height: 94vh;
 }
