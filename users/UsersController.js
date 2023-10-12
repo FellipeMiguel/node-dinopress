@@ -4,7 +4,7 @@ const User = require('./User');
 const bcrypt = require('bcryptjs');
 
 router.get('/admin/users', (req, res) => {
-    res.send('Listagem de usuários');
+
 });
 
 router.get('/admin/users/create', (req, res) => {
