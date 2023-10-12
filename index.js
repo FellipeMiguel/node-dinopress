@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
+const session = require('express-session');
 
 // Controllers
 const categoriesController = require('./categories/CategoriesController');
@@ -15,6 +16,11 @@ const User = require('./users/User');
 
 // View engine
 app.set('view engine', 'ejs');
+
+// Sessions
+app.use(session({
+    secret: 'lokimeucachorrolindo', cookie: {maxAge: 30000000}
+}));
 
 // Static
 app.use(express.static('public'));
@@ -35,6 +41,7 @@ app.use('/', categoriesController);
 app.use('/', articlesController);
 app.use('/', userController);
 
+// Rotas index
 app.get("/", (req, res) => {
     Article.findAll({
         order: [
