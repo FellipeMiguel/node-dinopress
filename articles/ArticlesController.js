@@ -68,17 +68,46 @@ router.get('/admin/articles/edit/:id', (req, res) => {
 });
 
 router.post('/articles/update', (req, res) => {
-   const {id, title, body, category} = req.body;
+    const {id, title, body, category} = req.body;
 
-   Article.update({title: title, body: body, categoryId: category, slug: slugify(title).toLowerCase()},{
-       where: {
-           id: id
-       }
-   }).then(() => {
-       res.redirect('/admin/articles');
-   }).catch(err => {
-       res.redirect('/');
-   });
+    Article.update({title: title, body: body, categoryId: category, slug: slugify(title).toLowerCase()}, {
+        where: {
+            id: id
+        }
+    }).then(() => {
+        res.redirect('/admin/articles');
+    }).catch(err => {
+        res.redirect('/');
+    });
+});
+
+router.get('/articles/page/:num', (req, res) => {
+    const page = req.params.num;
+    let offset = 0;
+
+    offset = isNaN(page) || page == 1 ? 0 : (parseInt(page) - 1) * 4;
+
+    Article.findAndCountAll({
+        limit: 5,
+        offset: offset,
+        order: [
+            ['id', 'DESC']
+        ],
+    }).then(articles => {
+        let next;
+        next = offset + 4 < articles.count;
+
+        const result = {
+            page: parseInt(page),
+            next: next,
+            articles: articles
+        }
+
+        Categoty.findAll().then(categories => {
+            res.render('admin/articles/page', {result: result, categories: categories});
+        });
+    });
+
 });
 
 module.exports = router;

@@ -6,10 +6,12 @@ const connection = require('./database/database');
 // Controllers
 const categoriesController = require('./categories/CategoriesController');
 const articlesController = require('./articles/ArticlesController');
+const userController = require('./users/UsersController');
 
 // Models
 const Category = require('./categories/Category');
 const Article = require('./articles/Article');
+const User = require('./users/User');
 
 // View engine
 app.set('view engine', 'ejs');
@@ -31,12 +33,14 @@ connection.authenticate().then(() => {
 // Rotas
 app.use('/', categoriesController);
 app.use('/', articlesController);
+app.use('/', userController);
 
 app.get("/", (req, res) => {
     Article.findAll({
         order: [
             ['id', 'DESC']
-        ]
+        ],
+        limit: 4
     }).then(articles => {
         Category.findAll().then(categories => {
             res.render('index', {articles: articles, categories: categories});
