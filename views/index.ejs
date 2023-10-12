@@ -5,7 +5,10 @@
     <hr />
     <div class="jumbotron">
         <h1 class="display-4">Bem-vindo!</h1>
-        <p class="lead">Dino's Press um blog de tecnologia</p>
+        <p class="lead">Dino's Press</p>
+        <hr class="my-4">
+        <p>Esté um blog para fins de estudos</p>
+        <a href="" class="btn btn-success btn-lg" role="button">Leia mais</a>
     </div>
     <hr />
     <% articles.forEach(article => { %>
@@ -19,12 +22,6 @@
         </div>
         <br />
     <% }) %>
-    <div class="row">
-        <div class="col col-12">
-            <a href="/articles/page/2" style="float: right">Próxima >></a>
-        </div>
-    </div>
-    <br>
 </div>
 
 <%- include('partials/footer') %>
